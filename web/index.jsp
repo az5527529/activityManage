@@ -88,6 +88,7 @@
 				<ul>
 					<li><a href="#" title="${ctx}/pages/system/addActivity.action">添加活动</a></li>
 					<li><a href="#" title="${ctx}/pages/system/activityManage.action">活动管理</a></li>
+					<li><a href="#" title="${ctx}/pages/system/confirmReceive.action">确认领取物资</a></li>
 				</ul>
 			</div>
 

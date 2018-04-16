@@ -15,7 +15,9 @@ $(function(){
             {field:'totalNum',title:'已报名人数',width:150,align:'center'},
             {field:'payedNum',title:'已支付人数',width:150,align:'center'},
             {field:'toPayNum',title:'未支付人数',width:150,align:'center'},
-            {field:'payingNum',title:'支付中人数',width:150,align:'center'}
+            {field:'payingNum',title:'支付中人数',width:150,align:'center'},
+            {field:'receivedNum',title:'已领取物资人数',width:150,align:'center'},
+            {field:'unreceivedNum',title:'未领取物资人数',width:150,align:'center'}
         ]]
     });
 });

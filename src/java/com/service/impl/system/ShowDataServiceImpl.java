@@ -22,8 +22,8 @@ public class ShowDataServiceImpl extends BaseServiceImpl<SignupInfo> implements 
     public Map<String, Object> getParamMap() {
         Map<String,Object> paramMap = new HashMap<String,Object>();
         paramMap.put("xlsName", "数据统计表.xls");
-        paramMap.put("queryHeaders", "已报名人数,已支付人数,未支付人数,支付中人数");
-        paramMap.put("queryKeys", "totalNum,payedNum,toPayNum,payingNum");
+        paramMap.put("queryHeaders", "已报名人数,已支付人数,未支付人数,支付中人数,已领取物资人数,未领取物资人数");
+        paramMap.put("queryKeys", "totalNum,payedNum,toPayNum,payingNum,receivedNum,unreceivedNum");
         return paramMap;
     }
 
@@ -62,6 +62,8 @@ public class ShowDataServiceImpl extends BaseServiceImpl<SignupInfo> implements 
         sql.append(",cast(ifnull(sum(case si.status when 1 then 1 else 0 end),0) as char) toPayNum \n");
         sql.append(",cast(ifnull(sum(case si.status when 2 then 1 else 0 end),0) as char) payingNum \n");
         sql.append(",cast(ifnull(sum(case si.status when 3 then 1 else 0 end),0) as char) payedNum \n");
+        sql.append(",cast(ifnull(sum(case when si.status=3 and si.is_take_material=1 then 1 else 0 end),0) as char) receivedNum \n");
+        sql.append(",cast(ifnull(sum(case when si.status=3 and si.is_take_material=0 then 1 else 0 end),0) as char) unreceivedNum \n");
         sql.append("from signup_info si \n");
         sql.append(" where 1=1 \n");
         sql.append( condition);

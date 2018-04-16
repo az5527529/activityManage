@@ -39,6 +39,8 @@ public class SignupInfoController {
         String status=request.getParameter("status");
         String activityId=request.getParameter("activityId");
         String number=request.getParameter("number");
+        String identifyNo=request.getParameter("identifyNo");
+        String isTakeMaterial=request.getParameter("isTakeMaterial");
 
         Map<String,String> paramMap = new HashMap<String,String>();
         paramMap.put("pageSize",pageSize);
@@ -49,6 +51,8 @@ public class SignupInfoController {
         paramMap.put("status",status);
         paramMap.put("activityId",activityId);
         paramMap.put("number",number);
+        paramMap.put("identifyNo",identifyNo);
+        paramMap.put("isTakeMaterial",isTakeMaterial);
 
         Page page = this.signupInfoService.getData(paramMap);
         JSONObject o = JSONObject.fromObject(page);

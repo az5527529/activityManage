@@ -15,39 +15,71 @@
 
 </head>
 <script src="${ctx}/js/system/signupManage.js" type="text/javascript"></script>
+<style type="text/css">
+    ul{
+        width: 100%;
+    }
+    li{
+        float: none;
+        display: inline-block;
+    }
+    .labelLi{
+        width: 6rem;
+        text-align: right;
+    }
+    input{
+        width: 10rem;
+    }
+</style>
 <body>
 <div id="cc" class="easyui-layout" style="width: 100%; height: 460px">
 
     <div data-options="region:'north',border:false" id="search"
-         style="padding: 5px; height: 60rem;">
+         style="padding: 5px; height: 100rem;">
         <form id="searchForm" style="margin-top: 10px">
             <ul>
-                <li><label>活动:</label>
+                <li class="labelLi"><label>活动:</label>
 
                 <li style="width: 10rem;">
                     <select id="activityId"  style="width: 100%;" name='activityId' class="easyui-combobox"
                             data-options="editable:false" >
                     </select>
                 </li>
-            </ul>
-            <ul>
-                <li><label>报名日期:</label>
+                <li class="labelLi"><label>报名日期:</label>
+                </li>
+                <li>
                     <input id="signupTimeBegin" class="easyui-datebox" data-options="editable:false"></input>
                     -
                     <input id="signupTimeEnd" class="easyui-datebox" data-options="editable:false"></input>
-
                 </li>
             </ul>
+
             <ul>
-                <li>
+                <li class="labelLi"><label>是否已领取物资:</label>
+
+                <li style="width: 10rem;">
+                    <select id="isTakeMaterial"  style="width: 100%;" name='isTakeMaterial' class="easyui-combobox"
+                            data-options="editable:false" >
+                        <option value=""></option>
+                        <option value="1">是</option>
+                        <option value="0">否</option>
+                    </select>
+                </li>
+                <li class="labelLi">
                     <label>姓名:</label>
-                    <input name="name" id="name" class="easyui-validatebox"  />
+
                 </li>
                 <li>
+                    <input name="name" id="name" class="easyui-validatebox"  />
+                </li>
+                <li class="labelLi">
                     <label>序号:</label>
+                </li>
+                <li>
                     <input name="number" id="number" class="easyui-validatebox"  />
                 </li>
             </ul>
+
         </form>
     </div>
     <div data-options="region:'center',split:true" style="height: 350px"

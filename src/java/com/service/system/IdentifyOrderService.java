@@ -10,9 +10,9 @@ import com.service.common.BaseService;
 public interface IdentifyOrderService extends BaseService<IdentifyOrder> {
     /**
      * 通过识别号或者报名序号来确认领取物资
-     * @param identifyOrder
+     * @param identifyNo
      * @param numer
      * @return
      */
-    public int confirmReceive(String identifyOrder,String numer) throws MessageException;
+    public int confirmReceive(String identifyNo,String numer) throws MessageException;
 }

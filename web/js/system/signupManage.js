@@ -12,14 +12,15 @@ $(function(){
         singleSelect:true,
         columns:[[
             {field:'signupInfoId',title:'',hidden:true},
-            {field:'number',title:'序号',width:'100',align:'center'},
-            {field:'name',title:'姓名',width:'120',align:'center'},
-            {field:'sex',title:'性别',width:'80',align:'center'},
-            {field:'telephone',title:'电话',width:'120',align:'center'},
-            {field:'idCard',title:'身份证',width:'180',align:'center'},
-            {field:'signupTime',title:'报名时间',width:'180',align:'center'},
-            {field:'status',title:'状态',width:'80',align:'center'},
-            {field:'isTakeMaterial',title:'是否已领取物资',width:'100',align:'center'},
+            {field:'number',title:'序号',width:'90',align:'center'},
+            {field:'name',title:'姓名',width:'90',align:'center'},
+            {field:'sex',title:'性别',width:'60',align:'center'},
+            {field:'telephone',title:'电话',width:'90',align:'center'},
+            {field:'idCard',title:'身份证',width:'150',align:'center'},
+            {field:'signupTime',title:'报名时间',width:'150',align:'center'},
+            {field:'status',title:'状态',width:'60',align:'center'},
+            {field:'identifyOrder',title:'物资领取号',width:'110',align:'center'},
+            {field:'isTakeMaterial',title:'是否已领取物资',width:'80',align:'center'},
         ]]
     });
 });
@@ -35,7 +36,8 @@ function searchActivity(){
         "name": $("#name").val(),
         "status" : status,
         "number" : $("#number").val(),
-        "activityId" : $('#activityId').combobox('getValue')
+        "activityId" : $('#activityId').combobox('getValue'),
+        "isTakeMaterial" : $('#isTakeMaterial').combobox('getValue')
     };
     $('#signup').datagrid("load");
 }
@@ -56,6 +58,7 @@ function exportAll(){
         ,{name: 'name', value:$("#name").val()}
         ,{name: 'status', value:status}
         ,{name: 'activityId',value : $('#activityId').combobox('getValue')}
+        ,{name: 'isTakeMaterial',value : $('#isTakeMaterial').combobox('getValue')}
         ,{name: 'xlsName',value : xlsName + ".xls"}
         ,{name: 'number',value : $("#number").val()}
         ,{name: 'serviceName',value : "signupInfoService"}

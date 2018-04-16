@@ -22,8 +22,8 @@ public class SignupInfoServiceImpl extends BaseServiceImpl<SignupInfo> implement
     public Map<String, Object> getParamMap() {
         Map<String,Object> paramMap = new HashMap<String,Object>();
         paramMap.put("xlsName", "报名信息表.xls");
-        paramMap.put("queryHeaders", "序号,姓名,性别,电话,身份证,报名时间,状态,是否已领取物资");
-        paramMap.put("queryKeys", "number,name,sex,telephone,idCard,signupTime,status,isTakeMaterial");
+        paramMap.put("queryHeaders", "序号,姓名,性别,电话,身份证,报名时间,状态,物资领取号,是否已领取物资");
+        paramMap.put("queryKeys", "number,name,sex,telephone,idCard,signupTime,status,identifyNo,isTakeMaterial");
         return paramMap;
     }
 
@@ -37,6 +37,8 @@ public class SignupInfoServiceImpl extends BaseServiceImpl<SignupInfo> implement
         String status=paramMap.get("status");
         String activityId=paramMap.get("activityId");
         String number=paramMap.get("number");
+        String identifyNo=paramMap.get("identifyNo");
+        String isTakeMaterial=paramMap.get("isTakeMaterial");
 
         int pageSize = 100000;
         int pageNum = 1;
@@ -52,7 +54,13 @@ public class SignupInfoServiceImpl extends BaseServiceImpl<SignupInfo> implement
             condition.append(" and si.name like '%" + name + "%'");
         }
         if(!StringUtil.isEmptyString(number)){
-            condition.append(" and si.number like '%" + number + "%'");
+            condition.append(" and si.number = '" + number + "'");
+        }
+        if(!StringUtil.isEmptyString(identifyNo)){
+            condition.append(" and io.identify_No = '" + identifyNo + "'");
+        }
+        if(!StringUtil.isEmptyString(isTakeMaterial)){
+            condition.append(" and si.is_Take_Material = " + isTakeMaterial);
         }
         if(!StringUtil.isEmptyString(signupTimeBegin)){
             condition.append(" and si.signup_Time >= '" + signupTimeBegin +" 00:00:00'");
@@ -73,6 +81,7 @@ public class SignupInfoServiceImpl extends BaseServiceImpl<SignupInfo> implement
         sql.append(",case si.sex when 1 then '男' else '女' end sex \n");
         sql.append(",case si.is_Take_Material when 1 then '是' else '否' end isTakeMaterial \n");
         sql.append(",case si.status when 1 then '未支付' when 2 then '支付中' when 3 then '已支付'else '' end status \n");
+        sql.append(",ifnull(io.identify_No,'' ) identifyNo \n");
         sql.append("from signup_info si \n");
         sql.append(" left join identify_order io on io.openid=si.openid and io.activity_id=si.activity_id \n");
         sql.append(" where 1=1 \n");

@@ -21,15 +21,15 @@ import java.io.IOException;
 public class IdentifyOrderController {
     @Resource
     private IdentifyOrderService identifyOrderService;
-    @RequestMapping(value = "/showData", method = RequestMethod.POST)
-    public void showData(HttpServletRequest request,
+    @RequestMapping(value = "/confirmReceive", method = RequestMethod.POST)
+    public void confirmReceive(HttpServletRequest request,
                          HttpServletResponse response) throws IOException {
-        String identifyOrder = request.getParameter("identifyOrder");
+        String identifyNo = request.getParameter("identifyNo");
         String number = request.getParameter("number");
         int result = 0;
         JSONObject o = new JSONObject();
         try {
-            result = this.identifyOrderService.confirmReceive(identifyOrder,number);
+            result = this.identifyOrderService.confirmReceive(identifyNo,number);
         } catch (MessageException e) {
             e.printStackTrace();
             o.put("errorMsg",e.getErrorMsg());
