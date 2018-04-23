@@ -64,8 +64,8 @@
     <a href="#" class="easyui-linkbutton"
        data-options="iconCls:'icon-search'" onclick="searchActivity()"
        plain="true"></a>
-    <a
-            href="#" class="easyui-linkbutton" id="export" plain="true" onclick="confirmReceive()">确认领取</a>
+    <a href="#" class="easyui-linkbutton" id="export" plain="true" onclick="confirmReceive()">确认领取</a>
+    <a href="#" class="easyui-linkbutton" style="margin-left: 2rem; " plain="true" onclick="cancelReceive()">取消领取</a>
 </div>
 </body>
 

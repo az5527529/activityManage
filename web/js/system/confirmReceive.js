@@ -19,7 +19,7 @@ $(function(){
             {field:'idCard',title:'身份证',width:'150',align:'center'},
             {field:'signupTime',title:'报名时间',width:'150',align:'center'},
             {field:'status',title:'状态',width:'60',align:'center'},
-            {field:'identifyOrder',title:'物资领取号',width:'110',align:'center'},
+            {field:'identifyNo',title:'物资领取号',width:'110',align:'center'},
             {field:'isTakeMaterial',title:'是否已领取物资',width:'80',align:'center'},
         ]]
     });
@@ -39,8 +39,7 @@ function searchActivity(){
     $('#signup').datagrid("options").url=ctx+"/signupInfo/searchSignupinfo.action?ids=" + Math.random(),
     $('#signup').datagrid("options").queryParams={
         "identifyNo" : $("#identifyNo").val(),
-        "number": $("#number").val(),
-        "activityId" : $('#activityId').combobox('getValue')
+        "number": $("#number").val()
     };
     $('#signup').datagrid("load");
 }
@@ -57,11 +56,42 @@ function confirmReceive() {
             $.ajax({
                 type : "post",
                 url : ctx + "/identifyOrder/confirmReceive.action",
-                data : {"activityId":activityId,"number":number,"identifyNo":identifyNo},
+                data : {"number":number,"identifyNo":identifyNo},
                 success : function(data) {
                     data = JSON.parse(data);
                     if(data.success){
                         newShow("操作成功");
+                        $("#signup").datagrid("reload");
+                    }else{
+                        newAlert(data.errorMsg);
+                    }
+                },
+                async : true
+            });
+        }
+    });
+
+}
+
+//取消领取功能
+function cancelReceive() {
+    var number = $("#number").val();
+    var identifyNo = $("#identifyNo").val();
+    if(!name && !number && !identifyNo){
+        newAlert("物资领取号、序号必须填一个");
+        return;
+    }
+    $.messager.confirm('Confirm', '您确定取消领取物资?', function (r) {
+        if (r) {
+            $.ajax({
+                type : "post",
+                url : ctx + "/identifyOrder/cancelReceive.action",
+                data : {"number":number,"identifyNo":identifyNo},
+                success : function(data) {
+                    data = JSON.parse(data);
+                    if(data.success){
+                        newShow("操作成功");
+                        $("#signup").datagrid("reload");
                     }else{
                         newAlert(data.errorMsg);
                     }

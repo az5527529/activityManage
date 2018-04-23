@@ -15,4 +15,13 @@ public interface IdentifyOrderService extends BaseService<IdentifyOrder> {
      * @return
      */
     public int confirmReceive(String identifyNo,String numer) throws MessageException;
+
+    /**
+     * 取消领取物资
+     * @param identifyNo
+     * @param numer
+     * @return
+     * @throws MessageException
+     */
+    public int cancelReceive(String identifyNo,String numer) throws MessageException;
 }

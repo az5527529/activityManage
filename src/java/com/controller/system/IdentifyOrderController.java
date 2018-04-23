@@ -37,4 +37,21 @@ public class IdentifyOrderController {
         o.put("success",result);
         WebUtil.outputPage(request, response, o.toString());
     }
+
+    @RequestMapping(value = "/cancelReceive", method = RequestMethod.POST)
+    public void cancelReceive(HttpServletRequest request,
+                               HttpServletResponse response) throws IOException {
+        String identifyNo = request.getParameter("identifyNo");
+        String number = request.getParameter("number");
+        int result = 0;
+        JSONObject o = new JSONObject();
+        try {
+            result = this.identifyOrderService.cancelReceive(identifyNo,number);
+        } catch (MessageException e) {
+            e.printStackTrace();
+            o.put("errorMsg",e.getErrorMsg());
+        }
+        o.put("success",result);
+        WebUtil.outputPage(request, response, o.toString());
+    }
 }

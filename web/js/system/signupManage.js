@@ -19,7 +19,7 @@ $(function(){
             {field:'idCard',title:'身份证',width:'150',align:'center'},
             {field:'signupTime',title:'报名时间',width:'150',align:'center'},
             {field:'status',title:'状态',width:'60',align:'center'},
-            {field:'identifyOrder',title:'物资领取号',width:'110',align:'center'},
+            {field:'identifyNo',title:'物资领取号',width:'110',align:'center'},
             {field:'isTakeMaterial',title:'是否已领取物资',width:'80',align:'center'},
         ]]
     });
