@@ -39,7 +39,8 @@ public class SessionFilter implements Filter {
                 res.getWriter().print("sessionOut");
                 return;
             }
-            res.sendRedirect(req.getContextPath() + "/login.jsp");
+            res.getWriter().print("<script language='javascript'>window.top.location='"+req.getContextPath()+"/login.jsp';</script>");
+//            res.sendRedirect(req.getContextPath() + "/login.jsp");
             return;
         }
         filterChain.doFilter(servletRequest, servletResponse);

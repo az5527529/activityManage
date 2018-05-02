@@ -57,8 +57,8 @@
 				</li>
 			
 				<li style="padding-left:15px;padding-top:10px">
-				<label for="password">密码:</label> <input class="easyui-validatebox"
-				type="password" name="password" id="password" data-options="required:true,missingMessage:'请输入您的密码'" />
+				<label for="password">密码:</label>
+					<input class="easyui-validatebox" type="password" name="password" id="password" data-options="required:true,missingMessage:'请输入您的密码'" />
 				</li>
 	
 				<li style="padding-left:0px;padding-top:10px">
